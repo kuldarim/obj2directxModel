@@ -325,7 +325,21 @@ bool LoadDataStructures(char* filename, int vertexCount, int textureCount, int n
 	}
 
 	//Create indices
+	j = 0;
+	for(int i=0; i<faceIndex; i++)
+	{
+		fout << "indices[" << j << "] = " << j << ";" << endl;
+		
+		j++;
 
+		fout << "indices[" << j << "] = " << j << ";" << endl;
+		
+		j++;
+
+		fout << "indices[" << j << "] = " << j << ";" << endl;
+
+		j++;
+	}
 
 	// Close the output file.
 	fout.close();
