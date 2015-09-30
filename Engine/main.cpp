@@ -301,32 +301,31 @@ bool LoadDataStructures(char* filename, int vertexCount, int textureCount, int n
 	fout << endl;
 
 	// Now loop through all the faces and output the three vertices for each face.
+	int j = 0;
 	for(int i=0; i<faceIndex; i++)
 	{
 		vIndex = faces[i].vIndex1 - 1;
-		tIndex = faces[i].tIndex1 - 1;
-		nIndex = faces[i].nIndex1 - 1;
 
-		fout << vertices[vIndex].x << ' ' << vertices[vIndex].y << ' ' << vertices[vIndex].z << ' '
-			 << texcoords[tIndex].x << ' ' << texcoords[tIndex].y << ' '
-			 << normals[nIndex].x << ' ' << normals[nIndex].y << ' ' << normals[nIndex].z << endl;
+		fout << "vertices[" << j << "].position = D3DXVECTOR3(" 
+			 << vertices[vIndex].x << "f, " << vertices[vIndex].y << "f, " << vertices[vIndex].z << "f);"
+			 << endl;
+		
+		j++;vIndex = faces[i].vIndex2 - 1;
 
-		vIndex = faces[i].vIndex2 - 1;
-		tIndex = faces[i].tIndex2 - 1;
-		nIndex = faces[i].nIndex2 - 1;
+		fout << "vertices[" << j << "].position = D3DXVECTOR3(" 
+			 << vertices[vIndex].x << "f, " << vertices[vIndex].y << "f, " << vertices[vIndex].z << "f);"
+			 << endl;
+		
+		j++;vIndex = faces[i].vIndex3 - 1;
 
-		fout << vertices[vIndex].x << ' ' << vertices[vIndex].y << ' ' << vertices[vIndex].z << ' '
-			 << texcoords[tIndex].x << ' ' << texcoords[tIndex].y << ' '
-			 << normals[nIndex].x << ' ' << normals[nIndex].y << ' ' << normals[nIndex].z << endl;
-
-		vIndex = faces[i].vIndex3 - 1;
-		tIndex = faces[i].tIndex3 - 1;
-		nIndex = faces[i].nIndex3 - 1;
-
-		fout << vertices[vIndex].x << ' ' << vertices[vIndex].y << ' ' << vertices[vIndex].z << ' '
-			 << texcoords[tIndex].x << ' ' << texcoords[tIndex].y << ' '
-			 << normals[nIndex].x << ' ' << normals[nIndex].y << ' ' << normals[nIndex].z << endl;
+		fout << "vertices[" << j << "].position = D3DXVECTOR3(" 
+			 << vertices[vIndex].x << "f, " << vertices[vIndex].y << "f, " << vertices[vIndex].z << "f);"
+			 << endl;
+		j++;
 	}
+
+	//Create indices
+
 
 	// Close the output file.
 	fout.close();
